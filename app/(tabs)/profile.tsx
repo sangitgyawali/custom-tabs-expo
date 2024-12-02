@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function Tab() {
+export default function ProfileScreen() {
   return (
     <View style={styles.container}>
-      <Text>Tab [Home|Settings]</Text>
+      <Text>Welcome to Your Profile!</Text>
     </View>
   );
 }

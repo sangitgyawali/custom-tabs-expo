@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function HomeScreen() {
+export default function TaskScreen() {
   return (
     <View style={styles.container}>
-      <Text>Welcome to HomePage of our application !</Text>
+      <Text>Welcome to Tasks!</Text>
     </View>
   );
 }

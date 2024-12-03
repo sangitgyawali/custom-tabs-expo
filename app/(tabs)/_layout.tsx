@@ -15,14 +15,14 @@ export default function TabLayout() {
         name="calendar"
         options={{
           title: 'Calendar',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="list" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="calendar" color={color} />,
         }}
       />
       <Tabs.Screen
         name="task"
         options={{
           title: 'Tasks',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="tasks" color={color} />,
         }}
       />
         <Tabs.Screen

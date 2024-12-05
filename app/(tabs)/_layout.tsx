@@ -12,24 +12,19 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="calendar"
-        options={{
-          title: 'Calendar',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="calendar" color={color} />,
-        }}
-      />
-      <Tabs.Screen
         name="task"
         options={{
           title: 'Tasks',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="tasks" color={color} />,
         }}
       />
-        <Tabs.Screen
-        name="profile"
+      <Tabs.Screen
+        name="calendar"
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+          title: 'Calendar',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="calendar" color={color} />,
+        }}
+      />
         }}
       />
     </Tabs>

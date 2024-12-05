@@ -1,9 +1,41 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useState } from 'react';
 
 const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
+  // State for handling search input
+  const [searchText, setSearchText] = useState('');
+
+  // Handler for "Get Started" button
+  const handleGetStarted = () => {
+    alert('Get Started Pressed!');
+  };
+
+  // Handler for "Search" input change
+  const handleSearchInputChange = (text: string) => {
+    setSearchText(text);
+    console.log(text); // You can replace this with your search functionality
+  };
+
+  // Handlers for other buttons
+  const handleViewCalendar = () => {
+    alert('Viewing Calendar...');
+  };
+
+  const handleAddNewTask = () => {
+    alert('Adding New Task...');
+  };
+
+  const handleViewTodayTask = () => {
+    alert('Viewing Today\'s Task...');
+  };
+
+  const handleViewStats = () => {
+    alert('Viewing My Stats...');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.rectangle}>
@@ -14,7 +46,7 @@ export default function HomeScreen() {
         <Text style={styles.text}>Let’s Set-Up</Text>
         <Text style={styles.text1}>Your Live</Text>
         <Text style={styles.text2}>Now !!</Text>
-        <TouchableOpacity style={styles.rectangle1} onPress={() => alert('Button Pressed!')}>
+        <TouchableOpacity style={styles.rectangle1} onPress={handleGetStarted}>
           <Text style={styles.text3}>Get Started</Text>
         </TouchableOpacity>
       </View>
@@ -25,16 +57,17 @@ export default function HomeScreen() {
           style={styles.textInput}
           placeholder="Search here..."
           placeholderTextColor="#888"
-          onChangeText={(text) => console.log(text)}
+          value={searchText}
+          onChangeText={handleSearchInputChange} // Update search text here
         />
       </View>
 
-      <TouchableOpacity style={styles.rectangleButton1} onPress={() => alert('Button Pressed!')}>
+      <TouchableOpacity style={styles.rectangleButton1} onPress={handleViewCalendar}>
         <Text style={styles.buttonText}>View</Text>
         <Text style={styles.buttonText}>Calendar 📅</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.rectangleButton2} onPress={() => alert('Button Pressed!')}>
+      <TouchableOpacity style={styles.rectangleButton2} onPress={handleAddNewTask}>
         <Image 
           source={{ uri: 'https://cdn-icons-png.flaticon.com/512/12692/12692379.png' }} 
           style={styles.buttonImage} 
@@ -43,7 +76,7 @@ export default function HomeScreen() {
         <Text style={styles.buttonText}>Task</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.rectangleButton3} onPress={() => alert('Button Pressed!')}>
+      <TouchableOpacity style={styles.rectangleButton3} onPress={handleViewTodayTask}>
         <Image 
           source={{ uri: 'https://cdn-icons-png.flaticon.com/512/1567/1567073.png' }} 
           style={styles.buttonImage} 
@@ -52,7 +85,7 @@ export default function HomeScreen() {
         <Text style={styles.buttonText}>Task</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.rectangleButton4} onPress={() => alert('Button Pressed!')}>
+      <TouchableOpacity style={styles.rectangleButton4} onPress={handleViewStats}>
         <Text style={styles.buttonText}>View My</Text>
         <Text style={styles.buttonText}>Stats 📊</Text>
       </TouchableOpacity>
@@ -198,10 +231,10 @@ const styles = StyleSheet.create({
   },
   rectangleButton4: {
     position: 'absolute',
-    bottom: height * 0.1,
-    left: width * 0.35,
-    width: 120,
-    height: 120,
+    bottom: height * 0.05,
+    left: width * 0.05,
+    width: width * 0.9,
+    height: 50,
     backgroundColor: '#F8F8F8',
     borderRadius: 15,
     justifyContent: 'center',
@@ -212,16 +245,21 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  buttonText: {
+    color: 'black',
+    fontWeight: 'bold',
+  },
   buttonImage: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     marginBottom: 10,
   },
   buttonImage1: {
-    width: 160,
-    height: 120,
-    position: 'absolute',
-    top: -20,
-    right: 10,
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+  },
+  icon: {
+    marginLeft: 10,
   },
 });

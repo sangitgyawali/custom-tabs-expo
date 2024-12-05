@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
@@ -44,13 +37,14 @@ export default function App() {
     }
   }, [tasks]);
 
-  // Function to add a new task with current timestamp
+  // Function to add a new task with current timestamp and date
   function addTask() {
     if (text.trim()) {
       const newTask = {
         id: Date.now(),
         text,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        date: new Date().toISOString().split('T')[0],  // Add today's date
       };
       setTasks([...tasks, newTask]);
       setText('');

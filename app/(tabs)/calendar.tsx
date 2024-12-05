@@ -100,9 +100,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
-    backgroundColor: '#F7F7F7',
-    marginBottom: 8,
-    borderRadius: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
   taskTime: {
     fontSize: 14,
@@ -113,9 +112,8 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   noTasksText: {
+    textAlign: 'center',
     fontSize: 16,
     color: '#888',
-    fontStyle: 'italic',
-    textAlign: 'center',
   },
 });

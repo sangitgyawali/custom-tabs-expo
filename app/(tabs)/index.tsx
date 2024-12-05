@@ -85,10 +85,6 @@ export default function HomeScreen() {
         <Text style={styles.buttonText}>Task</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.rectangleButton4} onPress={handleViewStats}>
-        <Text style={styles.buttonText}>View My</Text>
-        <Text style={styles.buttonText}>Stats 📊</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -120,7 +116,7 @@ const styles = StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold',
     position: 'absolute',
-    top: 20,
+    top: 10,
     left: 20,
   },
   text1: {
@@ -128,7 +124,7 @@ const styles = StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold',
     position: 'absolute',
-    top: 60,
+    top: 40,
     left: 20,
   },
   text2: {
@@ -136,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold',
     position: 'absolute',
-    top: 100,
+    top: 70,
     left: 20,
   },
   rectangle1: {
@@ -175,6 +171,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     paddingHorizontal: 10,
+    top:250,
   },
   textInput: {
     flex: 1,
@@ -186,7 +183,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: height * 0.25,
     left: width * 0.05,
-    width: 120,
+    width: 320,
     height: 120,
     backgroundColor: '#F8F8F8',
     borderRadius: 15,
@@ -197,12 +194,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
+    top:470,
+    left:45,
   },
   rectangleButton2: {
     position: 'absolute',
     bottom: height * 0.25,
     left: width * 0.35,
-    width: 120,
+    width: 320,
     height: 120,
     backgroundColor: '#F8F8F8',
     borderRadius: 15,
@@ -213,12 +212,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
+    top:330,
+    left:45,
+
   },
   rectangleButton3: {
     position: 'absolute',
     bottom: height * 0.25,
     left: width * 0.65,
-    width: 120,
+    width: 320,
     height: 120,
     backgroundColor: '#F8F8F8',
     borderRadius: 15,
@@ -229,23 +231,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
+    top:610,
+    left:45,
   },
-  rectangleButton4: {
-    position: 'absolute',
-    bottom: height * 0.05,
-    left: width * 0.05,
-    width: width * 0.9,
-    height: 50,
-    backgroundColor: '#F8F8F8',
-    borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
-  },
+
   buttonText: {
     color: 'black',
     fontWeight: 'bold',
@@ -256,9 +245,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonImage1: {
-    width: 100,
-    height: 100,
+    width: 220,
+    height: 220,
     marginBottom: 20,
+    left:80,
+    top:-20,
   },
   icon: {
     marginLeft: 10,

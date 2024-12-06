@@ -51,17 +51,6 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.searchContainer}>
-        <Icon name="search" size={20} color="#888" style={styles.icon} />
-        <TextInput
-          style={styles.textInput}
-          placeholder="Search here..."
-          placeholderTextColor="#888"
-          value={searchText}
-          onChangeText={handleSearchInputChange} // Update search text here
-        />
-      </View>
-
       <TouchableOpacity style={styles.rectangleButton1} onPress={handleViewCalendar}>
         <Text style={styles.buttonText}>View</Text>
         <Text style={styles.buttonText}>Calendar 📅</Text>
@@ -155,30 +144,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
   },
-  searchContainer: {
-    position: 'absolute',
-    top: height * 0.35,
-    left: width * 0.05,
-    width: width * 0.9,
-    height: 50,
-    backgroundColor: 'white',
-    borderRadius: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
-    paddingHorizontal: 10,
-    top:250,
-  },
-  textInput: {
-    flex: 1,
-    fontSize: 17,
-    color: 'black',
-    marginLeft: 10,
-  },
   rectangleButton1: {
     position: 'absolute',
     bottom: height * 0.25,
@@ -194,7 +159,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-    top:470,
+    top:430,
     left:45,
   },
   rectangleButton2: {
@@ -212,7 +177,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-    top:330,
+    top:290,
     left:45,
 
   },
@@ -231,7 +196,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-    top:610,
+    top:570,
     left:45,
   },
 

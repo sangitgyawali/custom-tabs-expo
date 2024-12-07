@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "custom-expo-navigation",
-    "slug": "custom-expo-navigation",
+    "name": "to-do-list-app",
+    "slug": "to-do-list-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.shiftcodeapps.todolist"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2392b411-ca37-44bc-837b-1e3ce9ccb42e"
+      }
     }
   }
 }

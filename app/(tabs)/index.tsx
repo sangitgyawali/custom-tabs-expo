@@ -1,39 +1,27 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native'; 
+import { useRouter } from 'expo-router'; 
 
 const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  // State for handling search input
+  const navigation = useNavigation(); 
   const [searchText, setSearchText] = useState('');
-
-  // Handler for "Get Started" button
   const handleGetStarted = () => {
-    alert('Get Started Pressed!');
+    navigation.navigate('instructions'); 
   };
 
-  // Handler for "Search" input change
-  const handleSearchInputChange = (text: string) => {
-    setSearchText(text);
-    console.log(text); // You can replace this with your search functionality
-  };
-
-  // Handlers for other buttons
   const handleViewCalendar = () => {
-    alert('Viewing Calendar...');
+    navigation.navigate('calendar');
   };
 
   const handleAddNewTask = () => {
-    alert('Adding New Task...');
+    navigation.navigate('task'); 
   };
 
-  const handleViewTodayTask = () => {
-    alert('Viewing Today\'s Task...');
-  };
-
-  const handleViewStats = () => {
-    alert('Viewing My Stats...');
+  const handleViewAllTasks = () => {
+    navigation.navigate('settings');
   };
 
   return (
@@ -51,11 +39,17 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
+      {/* Button to View Calendar */}
       <TouchableOpacity style={styles.rectangleButton1} onPress={handleViewCalendar}>
-        <Text style={styles.buttonText}>View</Text>
-        <Text style={styles.buttonText}>Calendar 📅</Text>
+        <Image 
+          source={{ uri: 'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678116-calendar-512.png' }} 
+          style={styles.buttonImage} 
+        />
+        <Text style={styles.buttonText}>View </Text>
+        <Text style={styles.buttonText}>Calendar</Text>
       </TouchableOpacity>
 
+      {/* Button to Add New Task */}
       <TouchableOpacity style={styles.rectangleButton2} onPress={handleAddNewTask}>
         <Image 
           source={{ uri: 'https://cdn-icons-png.flaticon.com/512/12692/12692379.png' }} 
@@ -65,15 +59,15 @@ export default function HomeScreen() {
         <Text style={styles.buttonText}>Task</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.rectangleButton3} onPress={handleViewTodayTask}>
+      {/* Button to View All Tasks */}
+      <TouchableOpacity style={styles.rectangleButton3} onPress={handleViewAllTasks}>
         <Image 
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/1567/1567073.png' }} 
+          source={{ uri: 'https://static-00.iconduck.com/assets.00/settings-icon-2048x2046-cw28eevx.png' }} 
           style={styles.buttonImage} 
         />
-        <Text style={styles.buttonText}>View Today</Text>
-        <Text style={styles.buttonText}>Task</Text>
-      </TouchableOpacity>
+        <Text style={styles.buttonText}>Settings</Text>
 
+      </TouchableOpacity>
     </View>
   );
 }
@@ -98,11 +92,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-    top:40,
+    top:45,
+    
   },
   text: {
     color: 'black',
-    fontSize: 27,
+    fontSize: 21,
     fontWeight: 'bold',
     position: 'absolute',
     top: 10,
@@ -110,7 +105,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: 'black',
-    fontSize: 27,
+    fontSize: 21,
     fontWeight: 'bold',
     position: 'absolute',
     top: 40,
@@ -118,7 +113,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     color: 'black',
-    fontSize: 27,
+    fontSize: 21,
     fontWeight: 'bold',
     position: 'absolute',
     top: 70,
@@ -128,8 +123,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     left: 20,
-    width: 120,
-    height: 40,
+    width: 100,
+    height: 30,
     backgroundColor: 'white',
     borderRadius: 15,
     justifyContent: 'center',
@@ -143,12 +138,14 @@ const styles = StyleSheet.create({
   text3: {
     fontWeight: 'bold',
     color: 'black',
+    position: 'absolute',
+    
   },
   rectangleButton1: {
     position: 'absolute',
     bottom: height * 0.25,
     left: width * 0.05,
-    width: 320,
+    width: 290,
     height: 120,
     backgroundColor: '#F8F8F8',
     borderRadius: 15,
@@ -159,14 +156,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-    top:430,
+    top:360,
     left:45,
   },
   rectangleButton2: {
     position: 'absolute',
     bottom: height * 0.25,
     left: width * 0.35,
-    width: 320,
+    width: 290,
     height: 120,
     backgroundColor: '#F8F8F8',
     borderRadius: 15,
@@ -177,15 +174,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-    top:290,
+    top:220,
     left:45,
-
   },
   rectangleButton3: {
     position: 'absolute',
     bottom: height * 0.25,
     left: width * 0.65,
-    width: 320,
+    width: 290,
     height: 120,
     backgroundColor: '#F8F8F8',
     borderRadius: 15,
@@ -196,7 +192,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-    top:570,
+    top:500,
     left:45,
   },
 
@@ -215,8 +211,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     left:80,
     top:-20,
-  },
-  icon: {
-    marginLeft: 10,
   },
 });

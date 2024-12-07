@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
   const [text, setText] = useState('');
+  const flatListRef = useRef(null); // Ref for FlatList
 
   // Load tasks from AsyncStorage when the app starts
   useEffect(() => {
@@ -40,13 +41,42 @@ export default function App() {
   // Function to add a new task with current timestamp and date
   function addTask() {
     if (text.trim()) {
+      const now = new Date();
+
+      // Format the full date (e.g., 1 January 2000)
+      const formattedDate = new Intl.DateTimeFormat('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }).format(now);
+
+      // Format the time (e.g., 11:30 AM)
+      const formattedTime = new Intl.DateTimeFormat('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      }).format(now);
+
+      // Format the day (e.g., Monday)
+      const formattedDay = new Intl.DateTimeFormat('en-US', {
+        weekday: 'long',
+      }).format(now);
+
       const newTask = {
         id: Date.now(),
         text,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        date: new Date().toISOString().split('T')[0],  // Add today's date
+        timestamp: formattedTime,
+        date: formattedDate,
+        day: formattedDay,
       };
-      setTasks([...tasks, newTask]);
+      setTasks(prevTasks => {
+        const updatedTasks = [...prevTasks, newTask];
+        // Scroll to the latest task after adding
+        setTimeout(() => {
+          flatListRef.current?.scrollToEnd({ animated: true });
+        }, 100); // Delay to ensure FlatList updates
+        return updatedTasks;
+      });
       setText('');
     }
   }
@@ -62,7 +92,7 @@ export default function App() {
       <View style={styles.item}>
         <View style={styles.taskContent}>
           <Text style={styles.text}>{task.text}</Text>
-          <Text style={styles.timestamp}>{task.timestamp}</Text>
+          <Text style={styles.timestamp}>{`${task.day}, ${task.date} at ${task.timestamp}`}</Text>
         </View>
         <TouchableOpacity
           onPress={() => deleteTask(task.id)}
@@ -76,23 +106,28 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        value={text}
-        onChangeText={setText}
-        placeholder="Enter your task..."
-        placeholderTextColor="#888"
-      />
-      <TouchableOpacity onPress={addTask} style={styles.addButton}>
-        <Text style={styles.addButtonText}>ADD TODO</Text>
-      </TouchableOpacity>
       <FlatList
+        ref={flatListRef} // Attach ref to FlatList
         data={tasks}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <TodoItem task={item} deleteTask={deleteTask} />
         )}
+        contentContainerStyle={styles.taskList}
+        ListFooterComponent={<View style={{ height: 100 }} />} // Extra space for footer
       />
+      <View style={styles.footer}>
+        <TextInput
+          style={styles.input}
+          value={text}
+          onChangeText={setText}
+          placeholder="Enter your task..."
+          placeholderTextColor="#888"
+        />
+        <TouchableOpacity onPress={addTask} style={styles.addButton}>
+          <Text style={styles.addButtonText}>ADD TODO</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -100,14 +135,26 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: '#f9f9f9',
+  },
+  taskList: {
+    padding: 20,
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#f9f9f9',
+    padding: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
   },
   input: {
     borderWidth: 1,
     borderColor: '#ddd',
     padding: 12,
-    marginBottom: 20,
+    marginBottom: 10,
     borderRadius: 8,
     backgroundColor: '#fff',
     fontSize: 16,
@@ -117,7 +164,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#8e44ad',
     padding: 12,
     borderRadius: 8,
-    marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },

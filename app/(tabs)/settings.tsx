@@ -3,7 +3,6 @@ import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Alert, Scr
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Sample data for the FAQ section
 const faqs = [
   { question: "How to use this app?", answer: "Simply add tasks and mark them as done when completed. You can also edit or delete tasks." },
   { question: "Can I clear all tasks?", answer: "Yes, you can clear all your tasks from the settings page." },
@@ -22,7 +21,6 @@ export default function SettingsScreen() {
 
   const router = useRouter();
 
-  // Load username from AsyncStorage when the app starts
   useEffect(() => {
     const loadUsername = async () => {
       const savedUsername = await AsyncStorage.getItem('username');
@@ -37,7 +35,6 @@ export default function SettingsScreen() {
     loadUsername();
   }, []);
 
-  // Handle Save Username
   const handleSaveUsername = async () => {
     if (username) {
       await AsyncStorage.setItem('username', username);
@@ -48,10 +45,8 @@ export default function SettingsScreen() {
     }
   };
 
-  // Toggle FAQ visibility
   const toggleFaq = () => setShowFaq(!showFaq);
 
-  // Toggle collapsible sections
   const toggleSection = (section: string) => {
     switch (section) {
       case 'privacyPolicy':
@@ -77,10 +72,7 @@ export default function SettingsScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
-      {/* Greeting */}
       <Text style={styles.greeting}>{greeting}</Text>
-
-      {/* Username Input */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Username</Text>
         <TextInput
@@ -92,7 +84,6 @@ export default function SettingsScreen() {
         <Button title="Save Username" onPress={handleSaveUsername} />
       </View>
 
-      {/* FAQ Section */}
       <View style={styles.faqContainer}>
         <TouchableOpacity onPress={toggleFaq}>
           <Text style={styles.faqTitle}>Frequently Asked Questions</Text>
@@ -105,7 +96,6 @@ export default function SettingsScreen() {
         ))}
       </View>
 
-      {/* Expandable Sections */}
       <TouchableOpacity style={styles.expandableSection} onPress={() => toggleSection('privacyPolicy')}>
         <Text style={styles.sectionTitle}>Privacy Policy</Text>
       </TouchableOpacity>

@@ -135,8 +135,6 @@ We value your privacy and take great care in protecting your personal data. We d
         <Text style={styles.sectionContent}>
           Your personal data is protected in accordance with applicable data protection laws. You have the right to access, modify, or delete your personal data at any time. To request changes or removal of your information, please contact our support team. We strive to protect your data using the latest security measures. If you have any concerns, please refer to our Privacy Policy or reach out to us directly.        </Text>
       )}
-
-      {/* Contact Information */}
       <View style={styles.contactContainer}>
         <Text style={styles.contactTitle}>Contact Us</Text>
         <Text style={styles.contactText}>Email: shiftcodetechnologies@gmail.com</Text>
